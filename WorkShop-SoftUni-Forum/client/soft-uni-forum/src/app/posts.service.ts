@@ -4,9 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IPost } from './interfaces/post';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class PostsService {
   constructor(private http: HttpClient) {}
 

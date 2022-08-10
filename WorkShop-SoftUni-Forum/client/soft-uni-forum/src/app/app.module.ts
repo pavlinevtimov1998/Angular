@@ -11,6 +11,7 @@ import { ThemesItemComponent } from './themes-item/themes-item.component';
 import { UserService } from './user.service';
 import { ThemesService } from './themes.service';
 import { PostsService } from './posts.service';
+import { PostItemComponent } from './post-item/post-item.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { PostsService } from './posts.service';
     ThemesComponent,
     AsideComponent,
     ThemesItemComponent,
+    PostItemComponent,
   ],
   imports: [BrowserModule, HttpClientModule],
   providers: [UserService, ThemesService, PostsService],
