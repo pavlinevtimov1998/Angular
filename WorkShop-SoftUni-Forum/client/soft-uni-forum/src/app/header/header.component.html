@@ -4,7 +4,7 @@
       <p class="logo"><span class="logo">SoftUni Forum</span></p>
     </div>
     <div class="mini-navbar">
-      <ul *ngIf="!userService.loggetIn">
+      <ul *ngIf="!isLogged">
         <li>
           <a href="#" (click)="loginHandler()">Login</a>
         </li>
@@ -12,7 +12,7 @@
           <a href="#">Register</a>
         </li>
       </ul>
-      <ul *ngIf="userService.loggetIn">
+      <ul *ngIf="isLogged">
         <li>
           <a href="#" (click)="logoutHandler()">Logout</a>
         </li>

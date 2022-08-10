@@ -7,6 +7,10 @@ import { UserService } from '../user.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
+  get isLogged(): boolean {
+    return this.userService.loggetIn;
+  }
+
   constructor(public userService: UserService) {}
 
   loginHandler(): void {
