@@ -9,6 +9,6 @@ export class PostsService {
   constructor(private http: HttpClient) {}
 
   getPosts(): Observable<IPost[]> {
-    return this.http.get<IPost[]>(environment.apiUrl + '/posts');
+    return this.http.get<IPost[]>(environment.apiUrl + '/posts?limit=5');
   }
 }
