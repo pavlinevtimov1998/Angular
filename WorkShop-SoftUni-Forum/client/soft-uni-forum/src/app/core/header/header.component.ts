@@ -7,6 +7,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  
   get isLogged(): boolean {
     return this.userService.loggetIn;
   }

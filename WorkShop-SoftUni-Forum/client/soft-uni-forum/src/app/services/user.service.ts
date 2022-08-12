@@ -15,4 +15,8 @@ export class UserService {
   logout(): void {
     this.loggetIn = false;
   }
+
+  isLoggedIn(): boolean {
+    return this.loggetIn;
+  }
 }

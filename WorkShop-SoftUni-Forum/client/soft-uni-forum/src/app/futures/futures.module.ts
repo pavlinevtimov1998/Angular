@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ThemeModule } from './theme/theme.module';
-import { PostsModule } from './posts/posts.module';
-import { AsideComponent } from './posts/aside/aside.component';
+import { HomeComponent } from './home/home.component';
+import { futureRoutingModule } from './futures.routing.module';
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule],
-  exports: [PostsModule, ThemeModule],
+  imports: [CommonModule, futureRoutingModule],
+  exports: [ThemeModule],
 })
 export class FuturesModule {}

@@ -1,5 +1,11 @@
-<main>
-  <div *ngIf="themes" class="theme-title">
-    <app-themes-list *ngFor="let theme of themes" [theme]="theme"></app-themes-list>
-  </div>
-</main>
+<div class="container">
+  <main>
+    <div *ngIf="themes" class="theme-title">
+      <app-themes-list
+        *ngFor="let theme of themes"
+        [theme]="theme"
+      ></app-themes-list>
+    </div>
+  </main>
+  <app-aside></app-aside>
+</div>
