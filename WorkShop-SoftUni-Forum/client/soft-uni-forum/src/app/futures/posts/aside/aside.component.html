@@ -1,0 +1,10 @@
+<div>
+  <aside>
+    <div class="aside">
+      <h2 class="title">Recent posts</h2>
+      <div *ngIf="posts">
+        <app-post-list *ngFor="let post of posts" [post]="post"></app-post-list>
+      </div>
+    </div>
+  </aside>
+</div>

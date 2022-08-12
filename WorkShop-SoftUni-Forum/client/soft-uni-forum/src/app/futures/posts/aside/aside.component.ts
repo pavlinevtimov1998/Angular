@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IPost } from '../interfaces/post';
-import { PostService } from '../services/post.service';
+import { IPost } from 'src/app/interfaces/post';
+import { PostService } from 'src/app/services/post.service';
 
 @Component({
   selector: 'app-aside',
@@ -13,7 +13,7 @@ export class AsideComponent implements OnInit {
   constructor(private postService: PostService) {}
 
   ngOnInit(): void {
-    this.postService.getPosts().subscribe((postsArray) => {
+    this.postService.getPosts().subscribe((postsArray) => {      
       this.posts = postsArray;
     });
   }

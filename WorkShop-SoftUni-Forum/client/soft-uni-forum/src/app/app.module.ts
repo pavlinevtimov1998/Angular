@@ -5,12 +5,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { ServicesModule } from './services/services.module';
 import { CoreModule } from './core/core.module';
-import { AsideComponent } from './aside/aside.component';
-import { ThemesComponent } from './themes/themes.component';
+import { FuturesModule } from './futures/futures.module';
 
 @NgModule({
-  declarations: [AppComponent, AsideComponent, ThemesComponent],
-  imports: [BrowserModule, HttpClientModule, CoreModule, ServicesModule],
+  declarations: [AppComponent],
+  imports: [BrowserModule, HttpClientModule, CoreModule, ServicesModule, FuturesModule],
   providers: [],
   bootstrap: [AppComponent],
 })
