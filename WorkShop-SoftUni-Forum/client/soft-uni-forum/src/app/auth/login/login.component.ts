@@ -12,6 +12,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  // TODO: Add login logic.
+
   loginHandler(): void {
     this.userService.login();
     this.router.navigate(['/home']);
