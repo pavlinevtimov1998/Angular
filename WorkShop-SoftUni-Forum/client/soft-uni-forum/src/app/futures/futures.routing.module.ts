@@ -1,6 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from '../auth/login/login.component';
 import { RegisterComponent } from '../auth/register/register.component';
+import { ThemeContentComponent } from './theme/theme-content/theme-content.component';
 import { ThemesComponent } from './theme/themes/themes.component';
 
 const routes: Routes = [
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent,
+  },
+  {
+    path: 'theme/:themeId',
+    component: ThemeContentComponent,
   },
 ];
 
