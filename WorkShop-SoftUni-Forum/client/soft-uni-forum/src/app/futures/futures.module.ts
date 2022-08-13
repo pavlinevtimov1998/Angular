@@ -5,7 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { futureRoutingModule } from './futures.routing.module';
 
 @NgModule({
-  declarations: [],
+  declarations: [HomeComponent],
   imports: [CommonModule, futureRoutingModule],
   exports: [ThemeModule],
 })
