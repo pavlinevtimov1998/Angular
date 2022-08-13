@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ITheme } from 'src/app/interfaces/theme';
 import { ThemeService } from 'src/app/services/theme.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-themes',
@@ -10,7 +11,14 @@ import { ThemeService } from 'src/app/services/theme.service';
 export class ThemesComponent implements OnInit {
   themes!: ITheme[];
 
-  constructor(private themesService: ThemeService) {}
+  get isLoggedIn(): boolean {
+    return this.userService.isLoggedIn();
+  }
+
+  constructor(
+    private themesService: ThemeService,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
     this.themesService.getThemes().subscribe((themesArray) => {
