@@ -9,12 +9,12 @@
           <a routerLink="/login">Login</a>
         </li>
         <li>
-          <a href="/register">Register</a>
+          <a routerLink="/register">Register</a>
         </li>
       </ul>
       <ul *ngIf="isLogged">
         <li>
-          <a href="/profile">John's profile</a>
+          <a routerLink="/profile">John's profile</a>
         </li>
         <li>
           <a href="#" (click)="logoutHandler()">Logout</a>
