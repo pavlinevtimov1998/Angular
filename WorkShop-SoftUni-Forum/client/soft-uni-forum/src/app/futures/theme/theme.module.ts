@@ -7,6 +7,7 @@ import { PostListComponent } from './post-list/post-list.component';
 import { HomeComponent } from '../home/home.component';
 import { futureRoutingModule } from '../futures.routing.module';
 import { ThemeContentComponent } from './theme-content/theme-content.component';
+import { CreateThemeComponent } from './create-theme/create-theme.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ThemeContentComponent } from './theme-content/theme-content.component';
     PostListComponent,
     HomeComponent,
     ThemeContentComponent,
+    CreateThemeComponent,
   ],
   imports: [CommonModule, futureRoutingModule],
   exports: [ThemesComponent],
