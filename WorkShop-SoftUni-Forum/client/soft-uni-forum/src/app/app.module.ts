@@ -9,6 +9,7 @@ import { FuturesModule } from './futures/futures.module';
 import { appRoutingModule } from './app-router.module';
 import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,6 +20,7 @@ import { FooterComponent } from './core/footer/footer.component';
     CoreModule,
     ServicesModule,
     FuturesModule,
+    AuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent, HeaderComponent, FooterComponent],

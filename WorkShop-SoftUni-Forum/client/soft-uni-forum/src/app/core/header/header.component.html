@@ -6,7 +6,7 @@
     <div class="mini-navbar">
       <ul *ngIf="!isLogged">
         <li>
-          <a (click)="loginHandler()">Login</a>
+          <a routerLink="/login" (click)="loginHandler()">Login</a>
         </li>
         <li>
           <a href="#">Register</a>
