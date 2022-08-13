@@ -4,9 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ITheme } from '../interfaces/theme';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class ThemeService {
   constructor(private http: HttpClient) {}
 

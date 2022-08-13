@@ -5,7 +5,7 @@ import { futureRoutingModule } from './futures.routing.module';
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, futureRoutingModule],
+  imports: [CommonModule],
   exports: [ThemeModule],
 })
 export class FuturesModule {}
