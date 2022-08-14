@@ -1,5 +1,5 @@
 <div class="container">
-  <form #registerForm="ngForm">
+  <form #registerForm="ngForm" (ngSubmit)="onSubmit()">
     <fieldset>
       <h1>Registration Form</h1>
 
@@ -19,23 +19,35 @@
         />
       </p>
 
-      <!-- if error -->
-      <p *ngIf="username.touched && username.invalid" class="error">
-        Message for Error
-      </p>
-      <!-- end if error -->
+      <ng-container *ngIf="username.touched && username.invalid">
+        <p *ngIf="username.errors?.['pattern']" class="error">
+          Name is not correct!
+        </p>
+        <p *ngIf="username.errors?.['required']" class="error">
+          Name is required!
+        </p>
+      </ng-container>
 
       <p class="field field-icon">
         <label for="email"
           ><span><i class="fas fa-envelope"></i></span
         ></label>
         <input
+          #email="ngModel"
           type="text"
           name="email"
           id="email"
           placeholder="marк@gmial.com"
+          required
+          ngModel
         />
       </p>
+
+      <ng-container *ngIf="email.touched && email.invalid">
+        <p *ngIf="email.errors?.['required']" class="error">
+          Email is required!
+        </p>
+      </ng-container>
 
       <p class="field field-icon">
         <label for="tel"
@@ -44,8 +56,31 @@
         <select name="tel" id="tel" class="tel">
           <option value="1">+359</option>
         </select>
-        <input type="text" name="tel" id="tel" placeholder="888 888" />
+        <input
+          #tel="ngModel"
+          type="text"
+          name="tel"
+          id="tel"
+          placeholder="888 888"
+          required
+          minlength="9"
+          pattern="[0-9]+"
+          ngModel
+        />
       </p>
+
+      <ng-container *ngIf="tel.touched && tel.invalid">
+        <p
+          *ngIf="tel.errors?.['minlength'] && !tel.errors?.['pattern']"
+          class="error"
+        >
+          Phone is should be at least 9 digits!
+        </p>
+        <p *ngIf="tel.errors?.['pattern']" class="error">
+          Phone is should have only digits!
+        </p>
+        <p *ngIf="tel.errors?.['required']" class="error">Phone is required!</p>
+      </ng-container>
 
       <p class="field field-icon">
         <label for="building"
@@ -56,29 +91,44 @@
         </select>
       </p>
 
-      <p class="field field-icon">
-        <label for="password"
-          ><span><i class="fas fa-lock"></i></span
-        ></label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          placeholder="******"
-        />
-      </p>
+      <div ngModelGroup="pass" #passData="ngModelGroup">
+        <p class="field field-icon">
+          <label for="password"
+            ><span><i class="fas fa-lock"></i></span
+          ></label>
+          <input
+            #password
+            type="password"
+            name="password"
+            id="password"
+            placeholder="******"
+            required
+            minlength="3"
+            maxlength="16"
+            pattern="[A-Za-z0-9]+"
+            ngModel
+          />
+        </p>
 
-      <p class="field field-icon">
-        <label for="re-password"
-          ><span><i class="fas fa-lock"></i></span
-        ></label>
-        <input
-          type="re-password"
-          name="re-password"
-          id="re-password"
-          placeholder="******"
-        />
-      </p>
+        <p class="field field-icon">
+          <label for="re-password"
+            ><span><i class="fas fa-lock"></i></span
+          ></label>
+          <input
+            type="re-password"
+            name="re-password"
+            id="re-password"
+            placeholder="******"
+          />
+        </p>
+      </div>
+
+      <ng-container *ngIf="passData.touched && passData.invalid">
+        <p *ngIf="passData.errors?.['pattern']" class="error">
+          Password is should have only letters and digits!
+        </p>
+        <p *ngIf="tel.errors?.['required']" class="error">Password is required!</p>
+      </ng-container>
 
       <p>
         <button>Create Account</button>

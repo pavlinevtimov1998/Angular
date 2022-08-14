@@ -18,4 +18,9 @@ export class TemplateDrivenRegFormComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     
   }
-}
+
+  onSubmit():void {
+    console.log(this.registerForm);
+    
+  }
+ }
