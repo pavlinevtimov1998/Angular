@@ -15,9 +15,7 @@ export class ThemesListComponent implements OnChanges {
 
   constructor(private userService: UserService) {}
 
-  ngOnChanges(): void {
-    console.log(this.theme.subscribers);
-    
+  ngOnChanges(): void {    
     this.canSubscribe = !this.theme.subscribers.includes(
       '5fa64b162183ce1728ff371d'
     );
