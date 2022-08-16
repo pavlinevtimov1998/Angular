@@ -9,6 +9,7 @@ import { futureRoutingModule } from '../futures.routing.module';
 import { ThemeContentComponent } from './theme-content/theme-content.component';
 import { CreateThemeComponent } from './create-theme/create-theme.component';
 import { FormsModule } from '@angular/forms';
+import { ProfileComponent } from '../pages/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     ThemeContentComponent,
     CreateThemeComponent,
+    ProfileComponent
   ],
   imports: [CommonModule, futureRoutingModule, FormsModule],
   exports: [ThemesComponent],

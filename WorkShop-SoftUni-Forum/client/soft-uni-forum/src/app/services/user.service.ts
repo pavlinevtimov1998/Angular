@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IUser } from '../interfaces';
 
@@ -21,6 +21,22 @@ export class UserService {
     return this.http.post<IUser>(environment.apiUrl + '/register', body, {
       withCredentials: true,
     });
+  }
+
+  getProfile$(): Observable<IUser> {
+    return this.http
+      .get<IUser>(environment.apiUrl + '/users/profile', {
+        withCredentials: true,
+      })
+      .pipe(tap((user) => (this.user = user)));
+  }
+
+  editProfile$(body: IUser): Observable<IUser> {
+    return this.http
+      .put<IUser>(environment.apiUrl + '/users/profile', body, {
+        withCredentials: true,
+      })
+      .pipe(tap((user) => (this.user = user)));
   }
 
   logout(): void {
