@@ -2,21 +2,17 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-
-interface IUser {
-  username: string;
-  email: string;
-  tel?: string;
-}
+import { IUser } from '../interfaces/user';
 
 @Injectable()
 export class UserService {
-  loggetIn = false;
+  loggedIn = false;
+  user!: IUser;
 
   constructor(private http: HttpClient) {}
 
   login(): void {
-    this.loggetIn = true;
+    this.loggedIn = true;
   }
 
   register$(body: {}): Observable<IUser> {
@@ -26,10 +22,6 @@ export class UserService {
   }
 
   logout(): void {
-    this.loggetIn = false;
-  }
-
-  isLoggedIn(): boolean {
-    return this.loggetIn;
+    this.loggedIn = false;
   }
 }

@@ -11,8 +11,8 @@ import { UserService } from 'src/app/services/user.service';
 export class ThemesComponent implements OnInit {
   themes!: ITheme[];
 
-  get isLoggedIn(): boolean {
-    return this.userService.isLoggedIn();
+  get isLogged(): boolean {
+    return this.userService.loggedIn;
   }
 
   constructor(

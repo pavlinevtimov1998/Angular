@@ -14,7 +14,7 @@
       </ul>
       <ul *ngIf="isLogged">
         <li>
-          <a routerLink="/profile">John's profile</a>
+          <a routerLink="/profile">{{ user.username }}'s profile</a>
         </li>
         <li>
           <a href="#" (click)="logoutHandler()">Logout</a>

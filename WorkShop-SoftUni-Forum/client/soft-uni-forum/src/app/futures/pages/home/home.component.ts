@@ -9,7 +9,7 @@ import { UserService } from 'src/app/services/user.service';
 export class HomeComponent implements OnInit {
 
   get isLoggedIn(): boolean {
-    return this.userServise.isLoggedIn();
+    return this.userServise.loggedIn;
   }
 
   constructor(private userServise: UserService) {

@@ -32,10 +32,10 @@ export class RegisterComponent implements OnInit {
     email: new FormControl(null, [Validators.required, emailValidator]),
     passwords: new FormGroup({
       password: this.passwordControl,
-      rePassword: new FormControl(
+      rePassword: new FormControl(null, [
         Validators.required,
-        passwordsMatching(this.passwordControl)
-      ),
+        passwordsMatching(this.passwordControl),
+      ]),
     }),
   });
 
@@ -47,8 +47,6 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  // TODO: Add register logic.
-
   registerHandler(): void {
     const { username, email, passwords } = this.registerForm.value;
 
@@ -56,12 +54,11 @@ export class RegisterComponent implements OnInit {
       username,
       email,
       password: passwords.password,
-      rePassword: passwords.rePassword,
     };
 
     this.userService.register$(body).subscribe((user) => {
-      console.log(user);
-
+      this.userService.loggedIn = true;
+      this.userService.user = user;
       this.router.navigate(['/home']);
     });
   }

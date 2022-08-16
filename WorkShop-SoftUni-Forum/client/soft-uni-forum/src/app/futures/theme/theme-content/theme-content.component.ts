@@ -14,7 +14,7 @@ export class ThemeContentComponent implements OnInit {
   theme!: ITheme;
   comments!: IPost[];
 
-  isLoggedIn: boolean = this.userService.isLoggedIn();
+  isLoggedIn: boolean = this.userService.loggedIn;
 
   constructor(
     private themeService: ThemeService,
