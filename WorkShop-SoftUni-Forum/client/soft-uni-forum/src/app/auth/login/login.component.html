@@ -1,5 +1,5 @@
 <div class="container">
-  <form class="login" action="" method="post">
+  <form class="login" [formGroup]="loginForm" (ngSubmit)="loginHandler()">
     <fieldset>
       <h2>Login Form</h2>
 
@@ -8,41 +8,69 @@
           ><span><i class="fas fa-envelope"></i></span
         ></label>
         <input
-          class="input-error"
+          [class.input-error]="errorValidator('email')"
+          [class.valid]="
+            loginForm.controls['email'].touched && !errorValidator('email')
+          "
           type="email"
-          name="email"
+          formControlName="email"
           id="email"
           placeholder="john.doe@gmail.com"
         />
       </p>
-      <p class="error">Email is required!</p>
-      <!-- <p class="error">
-                Email is not valid!
-            </p> -->
+
+      <ng-container *ngIf="errorValidator('email')">
+        <p
+          *ngIf="loginForm.controls['email'].errors?.['required']"
+          class="error"
+        >
+          Email is required!
+        </p>
+        <p
+          *ngIf="loginForm.controls['email'].errors?.['email'] && 
+          !loginForm.controls['email'].errors?.['required']"
+          class="error"
+        >
+          Email is not valid!
+        </p>
+      </ng-container>
 
       <p class="field field-icon">
         <label for="password"
           ><span><i class="fas fa-lock"></i></span
         ></label>
         <input
+          [class.input-error]="errorValidator('password')"
+          [class.valid]="
+            loginForm.controls['password'].touched &&
+            !errorValidator('password')
+          "
           type="password"
-          name="password"
+          formControlName="password"
           id="password"
           placeholder="******"
         />
       </p>
-      <!-- <p class="error">
-                Password is required!
-            </p>
-            <p class="error">
-                Password must be at least 4 characters!
-            </p> -->
+      <ng-container *ngIf="errorValidator('password')">
+        <p
+          *ngIf="loginForm.controls['password'].errors?.['required']"
+          class="error"
+        >
+          Password is required!
+        </p>
+        <p
+          *ngIf="loginForm.controls['password'].errors?.['minlength']"
+          class="error"
+        >
+          Password must be at least 5 characters!
+        </p>
+      </ng-container>
 
-      <button (click)="loginHandler()">Login</button>
+      <button [disabled]="loginForm.invalid">Login</button>
 
       <p class="text-center">
         Have an account?
-        <a href="#">Register</a>
+        <a href="/register">Register</a>
       </p>
     </fieldset>
   </form>

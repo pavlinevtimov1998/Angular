@@ -11,8 +11,10 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  login(): void {
-    this.loggedIn = true;
+  login$(body: {}): Observable<IUser> {
+    return this.http.post<IUser>(environment.apiUrl + '/login', body, {
+      withCredentials: true,
+    });
   }
 
   register$(body: {}): Observable<IUser> {
