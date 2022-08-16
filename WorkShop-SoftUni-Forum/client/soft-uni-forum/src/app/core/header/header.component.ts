@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IUser } from 'src/app/interfaces/user';
+import { IUser } from 'src/app/interfaces';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({

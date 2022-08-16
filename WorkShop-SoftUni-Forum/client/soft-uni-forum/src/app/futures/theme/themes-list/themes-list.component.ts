@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges } from '@angular/core';
-import { ITheme } from 'src/app/interfaces/theme';
+import { ITheme } from 'src/app/interfaces';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
