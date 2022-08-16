@@ -1,17 +1,10 @@
+import { ITheme } from './theme';
+import { IUser } from './user';
+
 export interface IPost {
+  created_at: string;
   likes: string[];
-  _id: string;
   text: string;
-  userId: {
-    themes: string[];
-    posts: string[];
-    _id: string;
-    tel: string;
-    email: string;
-    username: string;
-    password: string;
-    created_at: string;
-    updatedAt: string;
-    __v: 0;
-  };
+  userId: IUser;
+  themeId: ITheme;
 }

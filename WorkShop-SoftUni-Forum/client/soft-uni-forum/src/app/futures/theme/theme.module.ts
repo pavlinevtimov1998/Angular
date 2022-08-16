@@ -8,6 +8,7 @@ import { HomeComponent } from '../pages/home/home.component';
 import { futureRoutingModule } from '../futures.routing.module';
 import { ThemeContentComponent } from './theme-content/theme-content.component';
 import { CreateThemeComponent } from './create-theme/create-theme.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { CreateThemeComponent } from './create-theme/create-theme.component';
     ThemeContentComponent,
     CreateThemeComponent,
   ],
-  imports: [CommonModule, futureRoutingModule],
+  imports: [CommonModule, futureRoutingModule, FormsModule],
   exports: [ThemesComponent],
 })
 export class ThemeModule {}

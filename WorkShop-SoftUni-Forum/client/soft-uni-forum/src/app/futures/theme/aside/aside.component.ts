@@ -13,7 +13,9 @@ export class AsideComponent implements OnInit {
   constructor(private postService: PostService) {}
 
   ngOnInit(): void {
-    this.postService.getPosts().subscribe((postsArray) => {      
+    this.postService.getPosts().subscribe((postsArray) => {
+      console.log(postsArray);
+      
       this.posts = postsArray;
     });
   }
