@@ -19,7 +19,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.userServie.getProfile$().subscribe((user) => {
-      this.user = this.userServie.user;
+      this.user = user;
     });
   }
 
@@ -35,7 +35,6 @@ export class ProfileComponent implements OnInit {
   }
 
   editProfile(editProfileForm: NgForm): void {
-    console.log(editProfileForm.value);
 
     this.userServie.editProfile$(editProfileForm.value).subscribe((user) => {
       this.user = user;

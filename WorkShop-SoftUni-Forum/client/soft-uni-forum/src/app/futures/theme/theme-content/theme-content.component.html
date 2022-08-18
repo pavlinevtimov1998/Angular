@@ -1,4 +1,4 @@
-<app-home *ngIf="!isLoggedIn"></app-home>
+<app-home *ngIf="!(isLoggedIn$ | async)"></app-home>
 <div *ngIf="theme" class="container">
   <!-- theme content  -->
   <div class="theme-content">
@@ -39,7 +39,7 @@
         </div>
       </div>
       <div class="footer">
-        <div *ngIf="isLoggedIn">
+        <div *ngIf="isLoggedIn$ | async">
           <i *ngIf="!canLike(comment.likes)" class="fas fa-thumbs-up"></i>
           <i *ngIf="canLike(comment.likes)" class="fas fa-thumbs-down"></i>
         </div>
@@ -49,7 +49,7 @@
       </div>
     </div>
 
-    <div *ngIf="isLoggedIn" class="answer-comment">
+    <div *ngIf="isLoggedIn$ | async" class="answer-comment">
       <p><span>currentUser</span> comment:</p>
       <div class="answer">
         <form>

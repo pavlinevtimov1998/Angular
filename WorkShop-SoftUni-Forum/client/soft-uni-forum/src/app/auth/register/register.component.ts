@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/services/user.service';
+import { AuthService } from 'src/app/auth.service';
 import { emailValidator, passwordsMatching } from 'src/app/util/validators';
 
 @Component({
@@ -40,7 +40,7 @@ export class RegisterComponent implements OnInit {
   });
 
   constructor(
-    private userService: UserService,
+    private authService: AuthService,
     private router: Router,
     private formBuilder: FormBuilder
   ) {}
@@ -56,9 +56,7 @@ export class RegisterComponent implements OnInit {
       password: passwords.password,
     };
 
-    this.userService.register$(body).subscribe((user) => {
-      this.userService.loggedIn = true;
-      this.userService.user = user;
+    this.authService.register$(body).subscribe((user) => {
       this.router.navigate(['/home']);
     });
   }

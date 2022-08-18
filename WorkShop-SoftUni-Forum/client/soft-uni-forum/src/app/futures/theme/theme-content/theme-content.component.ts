@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/auth.service';
 import { IPost } from 'src/app/interfaces';
 import { ITheme } from 'src/app/interfaces';
 import { ThemeService } from 'src/app/services/theme.service';
-import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-theme-content',
@@ -14,12 +15,12 @@ export class ThemeContentComponent implements OnInit {
   theme!: ITheme;
   comments!: IPost[];
 
-  isLoggedIn: boolean = this.userService.loggedIn;
+  isLoggedIn$: Observable<boolean> = this.authService.isLoggedIn$;
 
   constructor(
     private themeService: ThemeService,
     private activatedRoute: ActivatedRoute,
-    private userService: UserService
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -31,6 +32,7 @@ export class ThemeContentComponent implements OnInit {
   }
 
   canLike(likes: string[]): boolean {
+    // TODO: ADD BETER FUNCTIONLAITY.
     return likes.includes('5fa64b162183ce1728ff371d');
   }
 }
