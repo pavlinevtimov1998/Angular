@@ -10,6 +10,7 @@ import { ThemeContentComponent } from './theme-content/theme-content.component';
 import { CreateThemeComponent } from './create-theme/create-theme.component';
 import { FormsModule } from '@angular/forms';
 import { ProfileComponent } from '../../auth/profile/profile.component';
+import { PageModule } from '../pages/pages.module';
 
 @NgModule({
   declarations: [
@@ -17,12 +18,11 @@ import { ProfileComponent } from '../../auth/profile/profile.component';
     ThemesListComponent,
     AsideComponent,
     PostListComponent,
-    HomeComponent,
     ThemeContentComponent,
     CreateThemeComponent,
-    ProfileComponent
+    ProfileComponent,
   ],
-  imports: [CommonModule, futureRoutingModule, FormsModule],
+  imports: [CommonModule, futureRoutingModule, FormsModule, PageModule],
   exports: [ThemesComponent],
 })
 export class ThemeModule {}
