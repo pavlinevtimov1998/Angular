@@ -10,7 +10,6 @@ import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { AuthModule } from './auth/auth.module';
 import { ThemeModule } from './futures/theme/theme.module';
-import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],

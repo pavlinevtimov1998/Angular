@@ -9,7 +9,7 @@ import { futureRoutingModule } from '../futures.routing.module';
 import { ThemeContentComponent } from './theme-content/theme-content.component';
 import { CreateThemeComponent } from './create-theme/create-theme.component';
 import { FormsModule } from '@angular/forms';
-import { ProfileComponent } from '../pages/profile/profile.component';
+import { ProfileComponent } from '../../auth/profile/profile.component';
 
 @NgModule({
   declarations: [
