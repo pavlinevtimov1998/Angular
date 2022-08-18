@@ -7,6 +7,10 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
+import {
+  MessageBusService,
+  MessageType,
+} from 'src/app/core/message-bus.service';
 import { emailValidator, passwordsMatching } from 'src/app/util/validators';
 
 @Component({
@@ -14,7 +18,7 @@ import { emailValidator, passwordsMatching } from 'src/app/util/validators';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent {
   passwordControl: FormControl = new FormControl(null, [
     Validators.required,
     Validators.minLength(5),
@@ -42,10 +46,9 @@ export class RegisterComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private messageBus: MessageBusService
   ) {}
-
-  ngOnInit(): void {}
 
   registerHandler(): void {
     const { username, email, passwords } = this.registerForm.value;
@@ -56,8 +59,13 @@ export class RegisterComponent implements OnInit {
       password: passwords.password,
     };
 
-    this.authService.register$(body).subscribe((user) => {
+    this.authService.register$(body).subscribe(() => {
       this.router.navigate(['/home']);
+
+      this.messageBus.notifyForMessage({
+        text: 'Successful registration!',
+        type: MessageType.Success,
+      });
     });
   }
 
