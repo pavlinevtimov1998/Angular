@@ -1,5 +1,10 @@
 export interface IUser {
-  username: string;
+  created_at: string;
   email: string;
-  tel?: string;
+  posts: string[];
+  tel: string;
+  themes: string[];
+  updatedAt: string;
+  username: string;
+  _id: string;
 }
