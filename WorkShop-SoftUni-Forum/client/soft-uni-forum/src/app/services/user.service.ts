@@ -6,22 +6,11 @@ import { IUser } from '../interfaces';
 
 @Injectable()
 export class UserService {
-  loggedIn = false;
-  user!: IUser;
+  
 
   constructor(private http: HttpClient) {}
 
-  login$(body: {}): Observable<IUser> {
-    return this.http.post<IUser>(environment.apiUrl + '/login', body, {
-      withCredentials: true,
-    });
-  }
-
-  register$(body: {}): Observable<IUser> {
-    return this.http.post<IUser>(environment.apiUrl + '/register', body, {
-      withCredentials: true,
-    });
-  }
+  
 
   getProfile$(): Observable<IUser> {
     return this.http
