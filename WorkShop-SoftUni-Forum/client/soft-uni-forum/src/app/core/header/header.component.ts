@@ -1,21 +1,48 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth.service';
 import { IUser } from 'src/app/interfaces';
+import { MessageBusService, MessageType } from '../message-bus.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnDestroy {
   currentUser$: Observable<IUser | undefined> = this.authService.currentUser$;
   isLoggedIn$: Observable<boolean> = this.authService.isLoggedIn$;
 
   isLoggingOut: boolean = false;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  message!: string;
+  isErrorMessage!: boolean;
+
+  private subscribtion: Subscription = new Subscription();
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private messageBus: MessageBusService
+  ) {}
+
+  ngOnInit(): void {
+    this.subscribtion.add(
+      this.messageBus.onNewMessage$.subscribe((newMessage) => {
+        console.log(newMessage);
+        
+        this.message = newMessage?.text || '';
+        this.isErrorMessage = newMessage?.type === MessageType.Error;
+
+        if (newMessage) {
+          setTimeout(() => {
+            this.messageBus.clear();
+          }, 3000);
+        }
+      })
+    );
+  }
 
   logoutHandler(): void {
     if (this.isLoggingOut) {
@@ -34,5 +61,9 @@ export class HeaderComponent {
         this.router.navigate(['/home']);
       },
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscribtion.unsubscribe();
   }
 }
