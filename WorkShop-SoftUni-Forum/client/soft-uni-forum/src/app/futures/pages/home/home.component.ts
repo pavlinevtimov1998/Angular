@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -8,10 +8,22 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit {
-  isLoggedIn: Observable<boolean> = this.authService.isLoggedIn$;
+export class HomeComponent implements OnInit, OnDestroy {
+  isLoggedIn!: boolean;
+
+  private subscribtion: Subscription = new Subscription();
 
   constructor(private authService: AuthService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.subscribtion.add(
+      this.authService.isLoggedIn$.subscribe((isLoggedIn) => {
+        this.isLoggedIn = isLoggedIn;
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscribtion.unsubscribe();
+  }
 }
