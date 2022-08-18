@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/auth.service';
 import { ITheme } from 'src/app/interfaces';
-import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-themes-list',
@@ -10,12 +11,13 @@ import { UserService } from 'src/app/services/user.service';
 export class ThemesListComponent implements OnChanges {
   @Input() theme!: ITheme;
 
-  isLoggedIn: boolean = this.userService.loggedIn;
+  isLoggedIn$: Observable<boolean> = this.authService.isLoggedIn$;
   canSubscribe: boolean = false;
 
-  constructor(private userService: UserService) {}
+  constructor(private authService: AuthService) {}
 
-  ngOnChanges(): void {    
+  ngOnChanges(): void {
+    // TODO: ADD BETER FUNCTIONALITY!
     this.canSubscribe = !this.theme.subscribers.includes(
       '5fa64b162183ce1728ff371d'
     );

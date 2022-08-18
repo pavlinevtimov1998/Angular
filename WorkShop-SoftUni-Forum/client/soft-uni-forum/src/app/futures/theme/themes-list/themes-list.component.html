@@ -17,7 +17,7 @@
         </div>
         <div class="subscribers">
           <button
-            *ngIf="isLoggedIn"
+            *ngIf="isLoggedIn$ | async"
             [class.subscribe]="canSubscribe"
             [class.unsubscribe]="!canSubscribe"
           >

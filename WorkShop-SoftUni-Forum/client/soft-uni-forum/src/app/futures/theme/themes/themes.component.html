@@ -1,4 +1,4 @@
-<app-home *ngIf="!isLogged"></app-home>
+<app-home *ngIf="!(isLoggedIn$ | async)"></app-home>
 <div class="container">
   <main>
     <div *ngIf="themes" class="theme-title">
