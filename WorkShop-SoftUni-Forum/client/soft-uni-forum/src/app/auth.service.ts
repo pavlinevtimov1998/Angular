@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { IUser } from './interfaces';
 
@@ -11,6 +11,7 @@ export class AuthService {
   private _currentUser = new BehaviorSubject<IUser | undefined>(undefined);
 
   currentUser$ = this._currentUser.asObservable();
+  isLoggedIn$ = this.currentUser$.pipe(map((user) => !!user));
 
   constructor(private http: HttpClient) {}
 
@@ -42,5 +43,9 @@ export class AuthService {
 
   handleLogin(newlyUser: IUser) {
     this._currentUser.next(newlyUser);
+  }
+
+  handleLogout(): void {
+    this._currentUser.next(undefined);
   }
 }

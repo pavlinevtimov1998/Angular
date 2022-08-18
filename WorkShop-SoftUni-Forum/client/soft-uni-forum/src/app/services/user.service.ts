@@ -17,7 +17,7 @@ export class UserService {
       .get<IUser>(environment.apiUrl + '/users/profile', {
         withCredentials: true,
       })
-      .pipe(tap((user) => (this.user = user)));
+      // .pipe(tap((user) => (this.user = user)));
   }
 
   editProfile$(body: IUser): Observable<IUser> {
@@ -25,10 +25,7 @@ export class UserService {
       .put<IUser>(environment.apiUrl + '/users/profile', body, {
         withCredentials: true,
       })
-      .pipe(tap((user) => (this.user = user)));
+      // .pipe(tap((user) => (this.user = user)));
   }
 
-  logout(): void {
-    this.loggedIn = false;
-  }
 }
