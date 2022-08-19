@@ -6,7 +6,8 @@ import { ThemesComponent } from './theme/themes/themes.component';
 
 const routes: Routes = [
   {
-    path: 'themes',
+    path: '',
+    pathMatch: 'full',
     component: ThemesComponent,
   },
   {
@@ -15,7 +16,7 @@ const routes: Routes = [
     component: CreateThemeComponent,
   },
   {
-    path: 'theme/:themeId',
+    path: ':themeId',
     component: ThemeContentComponent,
   },
 ];

@@ -13,6 +13,15 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
+    path: 'user',
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+  },
+  {
+    path: 'themes',
+    loadChildren: () =>
+      import('./futures/theme/theme.module').then((m) => m.ThemeModule),
+  },
+  {
     path: '**',
     component: PageNotFoundComponent,
   },

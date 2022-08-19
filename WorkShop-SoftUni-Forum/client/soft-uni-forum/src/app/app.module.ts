@@ -20,8 +20,6 @@ import { PageModule } from './futures/pages/pages.module';
     appRoutingModule,
     CoreModule,
     ServicesModule,
-    ThemeModule,
-    AuthModule,
     PageModule,
   ],
   providers: [],

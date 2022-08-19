@@ -6,15 +6,15 @@
     <div class="mini-navbar">
       <ul *ngIf="!(isLoggedIn$ | async)">
         <li>
-          <a routerLink="/login">Login</a>
+          <a routerLink="user/login">Login</a>
         </li>
         <li>
-          <a routerLink="/register">Register</a>
+          <a routerLink="user/register">Register</a>
         </li>
       </ul>
       <ul *ngIf="isLoggedIn$ | async">
         <li>
-          <a routerLink="/profile"
+          <a routerLink="user/profile"
             >{{ (currentUser$ | async)?.username }}'s profile</a
           >
         </li>
@@ -33,7 +33,7 @@
         <a routerLink="/themes">Themes</a>
       </li>
       <li>
-        <a routerLink="/create-theme">New Theme</a>
+        <a routerLink="/themes/create-theme">New Theme</a>
       </li>
     </ul>
     <p
