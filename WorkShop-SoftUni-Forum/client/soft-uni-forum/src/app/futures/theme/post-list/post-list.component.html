@@ -1,7 +1,9 @@
 <div class="aside-theme">
-    <a href="#">
-        <h3>{{post.text}}</h3>
-        <p>{{post.userId.username}}</p>
-        <p><span>{{post.created_at | date: 'short'}}</span></p>
-    </a>
+  <a href="#">
+    <h3>{{ post.text }}</h3>
+    <p>{{ post.userId.username }}</p>
+    <p>
+      <span>{{ post.created_at | timeAgo }}</span>
+    </p>
+  </a>
 </div>

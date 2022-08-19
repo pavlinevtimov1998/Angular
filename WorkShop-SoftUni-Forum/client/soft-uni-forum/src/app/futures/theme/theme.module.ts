@@ -10,6 +10,7 @@ import { ThemeContentComponent } from './theme-content/theme-content.component';
 import { CreateThemeComponent } from './create-theme/create-theme.component';
 import { FormsModule } from '@angular/forms';
 import { PageModule } from '../pages/pages.module';
+import { TimeAgoPipe } from './time-ago.pipe';
 
 @NgModule({
   declarations: [
@@ -19,8 +20,9 @@ import { PageModule } from '../pages/pages.module';
     PostListComponent,
     ThemeContentComponent,
     CreateThemeComponent,
+    TimeAgoPipe,
   ],
   imports: [CommonModule, futureRoutingModule, FormsModule, PageModule],
-  exports: [ThemesComponent],
+  exports: [ThemesComponent, TimeAgoPipe],
 })
 export class ThemeModule {}
