@@ -2,7 +2,10 @@
   <div class="theme-name-wrapper">
     <div class="theme-name">
       <a [routerLink]="['/theme', theme._id]" class="normal">
-        <h2>{{ theme.themeName }}</h2>
+        <h2 *ngIf="theme.themeName.length > 25">
+          {{ (theme.themeName | slice: 0:25) + "..." }}
+        </h2>
+        <h2 *ngIf="theme.themeName.length <= 25">{{ theme.themeName }}</h2>
       </a>
       <div class="columns">
         <div>
