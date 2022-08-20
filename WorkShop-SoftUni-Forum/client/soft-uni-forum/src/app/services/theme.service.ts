@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { ITheme } from '../interfaces';
+import { ITheme, IUser } from '../interfaces';
 
 @Injectable()
 export class ThemeService {
@@ -20,5 +20,13 @@ export class ThemeService {
     return this.http.post<ITheme>(environment.apiUrl + '/themes', body, {
       withCredentials: true,
     });
+  }
+
+  subscribe$(themeId: string, user: IUser | undefined): Observable<ITheme> {
+    return this.http.put<ITheme>(
+      `${environment.apiUrl}/themes/${themeId}`,
+      {},
+      { withCredentials: true }
+    );
   }
 }

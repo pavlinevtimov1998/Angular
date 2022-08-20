@@ -25,7 +25,7 @@ export class ThemeContentComponent implements OnInit {
 
   ngOnInit(): void {
     const themeId = this.activatedRoute.snapshot.params['themeId'];
-    this.themeService.getThemeById(themeId).subscribe((theme) => {
+    this.themeService.getThemeById$(themeId).subscribe((theme) => {
       this.theme = theme;
       this.comments = theme.posts;
     });

@@ -14,7 +14,7 @@ export class CreateThemeComponent implements OnInit {
   ngOnInit(): void {}
 
   createThemeHandler(createThemeForm: NgForm): void {
-    this.themeService.createTheme(createThemeForm.value).subscribe((theme) => {
+    this.themeService.createTheme$(createThemeForm.value).subscribe((theme) => {
       console.log(theme);
       this.router.navigate(['/themes']);
     });

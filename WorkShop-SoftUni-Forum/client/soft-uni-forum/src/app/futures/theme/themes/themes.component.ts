@@ -20,7 +20,7 @@ export class ThemesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.themesService.getThemes().subscribe((themesArray) => {
+    this.themesService.getThemes$().subscribe((themesArray) => {
       this.themes = themesArray;
     });
   }

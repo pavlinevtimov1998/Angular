@@ -23,6 +23,7 @@
             *ngIf="(isLoggedIn$ | async) && !isOwner"
             [class.subscribe]="!canSubscribe"
             [class.unsubscribe]="canSubscribe"
+            (click)="handleSubscribe()"
           >
             {{ !canSubscribe ? "Subscribe" : "Unsubscribe" }}
           </button>
