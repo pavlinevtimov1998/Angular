@@ -20,11 +20,11 @@
         </div>
         <div class="subscribers">
           <button
-            *ngIf="isLoggedIn$ | async"
-            [class.subscribe]="canSubscribe"
-            [class.unsubscribe]="!canSubscribe"
+            *ngIf="(isLoggedIn$ | async) && !isOwner"
+            [class.subscribe]="!canSubscribe"
+            [class.unsubscribe]="canSubscribe"
           >
-            {{ canSubscribe ? "Subscribe" : "Unsubscribe" }}
+            {{ !canSubscribe ? "Subscribe" : "Unsubscribe" }}
           </button>
           <p>
             Subscribers: <span>{{ theme.subscribers.length }}</span>
