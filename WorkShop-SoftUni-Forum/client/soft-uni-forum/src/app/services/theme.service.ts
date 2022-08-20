@@ -8,15 +8,15 @@ import { ITheme } from '../interfaces';
 export class ThemeService {
   constructor(private http: HttpClient) {}
 
-  getThemes(): Observable<ITheme[]> {
+  getThemes$(): Observable<ITheme[]> {
     return this.http.get<ITheme[]>(environment.apiUrl + '/themes');
   }
 
-  getThemeById(themeId: string): Observable<ITheme> {
+  getThemeById$(themeId: string): Observable<ITheme> {
     return this.http.get<ITheme>(environment.apiUrl + `/themes/${themeId}`);
   }
 
-  createTheme(body: {}): Observable<ITheme> {
+  createTheme$(body: {}): Observable<ITheme> {
     return this.http.post<ITheme>(environment.apiUrl + '/themes', body, {
       withCredentials: true,
     });
