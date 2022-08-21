@@ -1,5 +1,5 @@
-import { Component, DoCheck, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, Input, OnChanges, OnDestroy } from '@angular/core';
+import { map, Observable, Subscription, tap } from 'rxjs';
 import { AuthService } from 'src/app/auth.service';
 import { ITheme, IUser } from 'src/app/interfaces';
 import { ThemeService } from 'src/app/services/theme.service';
@@ -9,12 +9,13 @@ import { ThemeService } from 'src/app/services/theme.service';
   templateUrl: './themes-list.component.html',
   styleUrls: ['./themes-list.component.css'],
 })
-export class ThemesListComponent implements OnInit, DoCheck {
+export class ThemesListComponent implements OnChanges, OnDestroy {
   @Input() theme!: ITheme;
 
+  subscribtion: Subscription = new Subscription();
+
   isLoggedIn$: Observable<boolean> = this.authService.isLoggedIn$;
-  canSubscribe: boolean = false;
-  isOwner: boolean = false;
+  canSubscribe!: boolean;
   currentUser!: IUser | undefined;
 
   constructor(
@@ -22,28 +23,32 @@ export class ThemesListComponent implements OnInit, DoCheck {
     private themeService: ThemeService
   ) {}
 
-  ngOnInit(): void {
-    this.authService.currentUser$.subscribe((user) => {
-      this.currentUser = user;
-    });
-
-    this.isOwner = this.theme.userId._id == this.currentUser?._id;
-    if (this.currentUser) {
-      this.canSubscribe = this.theme.subscribers.includes(
-        this.currentUser?._id
-      );
-
-      console.log(this.currentUser);
-    }
+  ngOnChanges(): void {
+    this.subscribtion.add(
+      this.authService.currentUser$.subscribe((user) => {
+        this.currentUser = user;
+        if (this.currentUser) {
+          this.canSubscribe = !this.theme.subscribers.includes(
+            this.currentUser?._id
+          );
+        }
+      })
+    );
   }
 
-  ngDoCheck(): void {
-    console.log('check');
+  handleSubscribe(theme: ITheme): void {
+    this.subscribtion.add(
+      this.themeService.subscribe$(theme._id).subscribe((newTheme) => {
+        this.theme.subscribers = newTheme.subscribers;
+        this.canSubscribe = !this.canSubscribe;
+      })
+    );
+    console.log(this.subscribtion);
+    
   }
 
-  handleSubscribe(): void {
-    this.themeService
-      .subscribe$(this.theme._id, this.currentUser)
-      .subscribe((theme) => {});
+  ngOnDestroy(): void {
+    this.subscribtion.unsubscribe();
+    console.log(this.subscribtion);
   }
 }

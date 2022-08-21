@@ -22,7 +22,7 @@ export class ThemeService {
     });
   }
 
-  subscribe$(themeId: string, user: IUser | undefined): Observable<ITheme> {
+  subscribe$(themeId: string): Observable<ITheme> {
     return this.http.put<ITheme>(
       `${environment.apiUrl}/themes/${themeId}`,
       {},
