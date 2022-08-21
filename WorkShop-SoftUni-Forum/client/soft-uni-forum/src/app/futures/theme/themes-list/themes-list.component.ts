@@ -43,12 +43,10 @@ export class ThemesListComponent implements OnChanges, OnDestroy {
         this.canSubscribe = !this.canSubscribe;
       })
     );
-    console.log(this.subscribtion);
     
   }
 
   ngOnDestroy(): void {
     this.subscribtion.unsubscribe();
-    console.log(this.subscribtion);
   }
 }

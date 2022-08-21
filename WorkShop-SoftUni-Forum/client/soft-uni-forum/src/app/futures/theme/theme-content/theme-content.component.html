@@ -1,14 +1,12 @@
 <app-home *ngIf="!(isLoggedIn$ | async)"></app-home>
 <div *ngIf="theme" class="container">
-  <!-- theme content  -->
   <div class="theme-content">
-    <!-- theme-title  -->
     <div class="theme-title">
       <div class="theme-name-wrapper">
         <div class="theme-name">
           <h2>{{ theme.themeName }}</h2>
           <p>
-            Date: <time>{{ theme.created_at }}</time>
+            Date: <time>{{ theme.created_at | date: "short" }}</time>
           </p>
         </div>
         <div class="subscribers">
@@ -25,7 +23,7 @@
       <header class="header">
         <p>
           <span>{{ comment.userId.username }}</span> posted on
-          <time>{{ comment.created_at }}</time>
+          <time>{{ comment.created_at | date: "short" }}</time>
         </p>
       </header>
       <div class="comment-main">
@@ -40,7 +38,7 @@
       </div>
       <div class="footer">
         <div *ngIf="isLoggedIn$ | async">
-          <i *ngIf="!canLike(comment.likes)" class="fas fa-thumbs-up"></i>
+          <i *ngIf="!canLike(comment.likes)" (click)="like(comment)" class="fas fa-thumbs-up"></i>
           <i *ngIf="canLike(comment.likes)" class="fas fa-thumbs-down"></i>
         </div>
         <p>

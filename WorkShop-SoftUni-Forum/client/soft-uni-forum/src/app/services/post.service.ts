@@ -11,4 +11,12 @@ export class PostService {
   getPosts(): Observable<IPost[]> {
     return this.http.get<IPost[]>(environment.apiUrl + '/posts?limit=5');
   }
+
+  like$(postId: string): Observable<{ message: string }> {
+    return this.http.put<{ message: string }>(
+      environment.apiUrl + `/likes/${postId}`,
+      {},
+      { withCredentials: true }
+    );
+  }
 }
