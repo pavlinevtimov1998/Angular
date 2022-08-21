@@ -48,8 +48,6 @@ export class ThemesListComponent implements OnChanges, OnDestroy {
   handleUnsubscribe(theme: ITheme): void {
     this.subscribtion$.add(
       this.themeService.unsubscribe$(theme._id).subscribe((newTheme) => {
-        console.log(newTheme);
-        
         this.theme.subscribers = newTheme.subscribers;
         this.canSubscribe = !this.canSubscribe;
       })
