@@ -1,4 +1,5 @@
 const { themeModel } = require("../models");
+const { newPost } = require("./postController");
 
 function getThemes(req, res, next) {
   themeModel
