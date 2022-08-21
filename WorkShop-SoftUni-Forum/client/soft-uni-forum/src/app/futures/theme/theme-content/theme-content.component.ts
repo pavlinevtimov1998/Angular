@@ -43,7 +43,8 @@ export class ThemeContentComponent implements OnInit, OnDestroy {
         ),
         this.authService.currentUser$,
       ]).subscribe(([theme, user]) => {
-        (this.theme = theme), (this.comments = theme.posts);
+        this.theme = theme,
+        this.comments = theme.posts;
         this.currentUser = user;
       })
     );
