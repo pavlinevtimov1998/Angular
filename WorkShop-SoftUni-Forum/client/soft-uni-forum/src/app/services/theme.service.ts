@@ -29,4 +29,12 @@ export class ThemeService {
       { withCredentials: true }
     );
   }
+
+  unsubscribe$(themeId: string): Observable<ITheme> {
+    return this.http.put<ITheme>(
+      `${environment.apiUrl}/themes/${themeId}/unsubscribe`,
+      {},
+      { withCredentials: true }
+    );
+  }
 }

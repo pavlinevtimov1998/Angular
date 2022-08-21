@@ -12,7 +12,7 @@ import { ThemeService } from 'src/app/services/theme.service';
 export class ThemesListComponent implements OnChanges, OnDestroy {
   @Input() theme!: ITheme;
 
-  subscribtion: Subscription = new Subscription();
+  subscribtion$: Subscription = new Subscription();
 
   isLoggedIn$: Observable<boolean> = this.authService.isLoggedIn$;
   canSubscribe!: boolean;
@@ -24,7 +24,7 @@ export class ThemesListComponent implements OnChanges, OnDestroy {
   ) {}
 
   ngOnChanges(): void {
-    this.subscribtion.add(
+    this.subscribtion$.add(
       this.authService.currentUser$.subscribe((user) => {
         this.currentUser = user;
         if (this.currentUser) {
@@ -37,16 +37,26 @@ export class ThemesListComponent implements OnChanges, OnDestroy {
   }
 
   handleSubscribe(theme: ITheme): void {
-    this.subscribtion.add(
+    this.subscribtion$.add(
       this.themeService.subscribe$(theme._id).subscribe((newTheme) => {
         this.theme.subscribers = newTheme.subscribers;
         this.canSubscribe = !this.canSubscribe;
       })
     );
-    
+  }
+
+  handleUnsubscribe(theme: ITheme): void {
+    this.subscribtion$.add(
+      this.themeService.unsubscribe$(theme._id).subscribe((newTheme) => {
+        console.log(newTheme);
+        
+        this.theme.subscribers = newTheme.subscribers;
+        this.canSubscribe = !this.canSubscribe;
+      })
+    );
   }
 
   ngOnDestroy(): void {
-    this.subscribtion.unsubscribe();
+    this.subscribtion$.unsubscribe();
   }
 }

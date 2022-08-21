@@ -18,19 +18,34 @@
             </p>
           </div>
         </div>
-        <div class="subscribers">
-          <button
-            *ngIf="isLoggedIn$ | async"
-            [class.subscribe]="canSubscribe"
-            [class.unsubscribe]="!canSubscribe"
-            (click)="handleSubscribe(theme)"
-          >
-            {{ canSubscribe ? "Subscribe" : "Unsubscribe" }}
-          </button>
-          <p>
-            Subscribers: <span>{{ theme.subscribers.length }}</span>
-          </p>
-        </div>
+        <ng-container *ngIf="canSubscribe">
+          <div class="subscribers">
+            <button
+              *ngIf="isLoggedIn$ | async"
+              class="subscribe"
+              (click)="handleSubscribe(theme)"
+            >
+              {{ canSubscribe ? "Subscribe" : "Unsubscribe" }}
+            </button>
+            <p>
+              Subscribers: <span>{{ theme.subscribers.length }}</span>
+            </p>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="!canSubscribe">
+          <div class="subscribers">
+            <button
+              *ngIf="isLoggedIn$ | async"
+              class="unsubscribe"
+              (click)="handleUnsubscribe(theme)"
+            >
+              {{ canSubscribe ? "Subscribe" : "Unsubscribe" }}
+            </button>
+            <p>
+              Subscribers: <span>{{ theme.subscribers.length }}</span>
+            </p>
+          </div>
+        </ng-container>
       </div>
     </div>
   </div>
