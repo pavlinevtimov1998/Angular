@@ -85,8 +85,6 @@ function dislike(req, res, next) {
     const { postId } = req.params;
     const { _id: userId } = req.user;
 
-    console.log('dislike')
-
     postModel.updateOne({ _id: postId }, { $pull: { likes: userId } }, { new: true })
         .then(() => res.status(200).json({ message: 'Dislike successful!' }))
         .catch(next)
