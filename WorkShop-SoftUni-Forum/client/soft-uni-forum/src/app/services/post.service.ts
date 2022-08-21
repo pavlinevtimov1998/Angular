@@ -19,4 +19,12 @@ export class PostService {
       { withCredentials: true }
     );
   }
+
+  dislike$(postId: string): Observable<{ message: string }> {
+    return this.http.put<{ message: string }>(
+      environment.apiUrl + `/dislikes/${postId}`,
+      {},
+      { withCredentials: true }
+    );
+  }
 }

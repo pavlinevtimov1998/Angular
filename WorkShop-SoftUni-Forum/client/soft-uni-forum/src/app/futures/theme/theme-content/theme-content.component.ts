@@ -71,6 +71,21 @@ export class ThemeContentComponent implements OnInit, OnDestroy {
     }
   }
 
+  dislike(comment: IPost): void {
+    this.subscribtion$.add(
+      this.postService.dislike$(comment._id).subscribe(({ message }) => {
+        this.messageBus.notifyForMessage({
+          text: message,
+          type: MessageType.Success,
+        });
+      })
+    );
+
+    if (this.currentUser) {
+      comment.likes = comment.likes.filter((id) => id !== this.currentUser?._id);
+    }
+  }
+
   ngOnDestroy(): void {
     this.subscribtion$.unsubscribe();
   }

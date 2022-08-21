@@ -39,7 +39,7 @@
       <div class="footer">
         <div *ngIf="isLoggedIn$ | async">
           <i *ngIf="!canLike(comment.likes)" (click)="like(comment)" class="fas fa-thumbs-up"></i>
-          <i *ngIf="canLike(comment.likes)" class="fas fa-thumbs-down"></i>
+          <i *ngIf="canLike(comment.likes)" (click)="dislike(comment)" class="fas fa-thumbs-down"></i>
         </div>
         <p>
           <span>{{ comment.likes.length }}</span> likes
